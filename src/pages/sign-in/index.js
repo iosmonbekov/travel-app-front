@@ -1,22 +1,11 @@
 import React from 'react'
-import { Formik } from 'formik'
+import { Field, Formik } from 'formik'
+import { INPUT_VALIDATORS } from '@utils'
+import { validate } from '@/utils/input-validators/validate'
 import './index.scss'
 
 export const SignIn = () => {
 	const initialValues = { email: '', password: '' }
-
-	const validate = (values) => {
-		console.log(values)
-		const errors = {}
-		if (!values.email) {
-			errors.email = 'Required'
-		} else if (
-			!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-		) {
-			errors.email = 'Invalid email address'
-		}
-		return errors
-	}
 
 	const onSubmit = (values, { setSubmitting }) => {
 		setTimeout(() => {
@@ -36,27 +25,23 @@ export const SignIn = () => {
 					<div className="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
 						<Formik
 							initialValues={initialValues}
-							validate={validate}
 							onSubmit={onSubmit}
 						>{({
 								values,
 								errors,
 								touched,
-								handleChange,
-								handleBlur,
 								handleSubmit,
 								isSubmitting,
 							}) => (
 								<form onSubmit={handleSubmit}>
 									<div className="form-outline mb-4">
 										<label className="form-label">Email address</label>
-										<input 
+										<Field 
 											type="email" 
 											name='email' 
 											className={`form-control form-control-lg ${touched.email && errors.email ? 'is-invalid' : touched.email && 'is-valid'}`} 
 											placeholder="Enter a valid email address"
-											onChange={handleChange}
-											onBlur={handleBlur}
+											validate={validate([INPUT_VALIDATORS.required(), INPUT_VALIDATORS.email()])}
 											value={values.email} 
 										/>
 										<div className="invalid-feedback">
@@ -66,13 +51,12 @@ export const SignIn = () => {
 
 									<div className="form-outline mb-3">
 										<label className="form-label was-validated">Password</label>
-										<input 
+										<Field 
 											type="password" 
 											name='password' 
 											className={`form-control form-control-lg ${touched.password && errors.password ? 'is-invalid' : touched.password && 'is-valid'}`} 
 											placeholder="Enter password"
-											onChange={handleChange}
-											onBlur={handleBlur}
+											validate={validate([INPUT_VALIDATORS.required(), INPUT_VALIDATORS.min(6)])}
 											value={values.password} 
 										/>
 										<div className="invalid-feedback">
@@ -90,7 +74,6 @@ export const SignIn = () => {
 										</p>
 									</div>
 								</form>
-
 							)}
 						</Formik>
 					</div>
