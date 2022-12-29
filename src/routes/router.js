@@ -1,6 +1,6 @@
 import React from 'react'
 import { createBrowserRouter } from 'react-router-dom'
-import { SignIn, SignUp } from '@pages/index.js'
+import { SignIn, SignUp, NotFoundPage } from '@pages/index.js'
 
 export const router = createBrowserRouter([
 	{
@@ -11,4 +11,8 @@ export const router = createBrowserRouter([
 		path: '/sign-up',
 		element: <SignUp />
 	},
+	{
+		path: '*',
+		element: <NotFoundPage />
+	}
 ])
