@@ -21,3 +21,9 @@ export const max = (max, message = `Maximum values is ${max}`) => {
 		if (value.length >= max) return message
 	}
 }
+
+export const same = (goal, message = 'Not same') => {
+	return (value) => {
+		if (value !== goal) return message
+	}
+}

@@ -1,8 +1,7 @@
 import React from 'react'
 import { Field, Formik } from 'formik'
-import { INPUT_VALIDATORS } from '@utils'
-import { validate } from '@/utils/input-validators/validate'
-import './index.scss'
+import { Link } from 'react-router-dom'
+import { INPUT_VALIDATORS, validate } from '@utils'
 
 export const SignIn = () => {
 	const initialValues = { email: '', password: '' }
@@ -65,12 +64,12 @@ export const SignIn = () => {
 									</div>
 
 									<div className="text-center text-lg-start mt-4 pt-2">
-										<button disabled={isSubmitting} type="button" className="btn btn-primary btn-lg px-5">
-											Login
+										<button disabled={isSubmitting} type="submit" className="btn btn-primary btn-lg px-5">
+											Sign in
 										</button>
 										<p className="small fw-bold mt-2 pt-1 mb-0">
 											Don&apos;t have an account?
-											<a href="#!" className="link-danger mx-2">Register</a>
+											<Link to="/sign-up" className="link-danger mx-2">Sign up</Link>
 										</p>
 									</div>
 								</form>
