@@ -16,8 +16,7 @@
   "scripts": {
     "start": "craco start",
     "build": "craco build",
-    "serve": "node index.js",
-    "serve:build": "craco build; node index.js"
+    "serve": "node index.js"
   },
   "eslintConfig": {
     "extends": [
