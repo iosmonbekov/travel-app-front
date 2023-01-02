@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import './index.scss'
 
-export const NotFoundPage = () => {
+export const NotFound = () => {
 	return <div className='not-found-page'>
 		<header className="top-header">
 		</header>

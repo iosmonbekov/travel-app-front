@@ -1,5 +1,6 @@
 import { SignIn } from './sign-in'
 import { SignUp } from './sign-up'
-import { NotFoundPage } from './404'
+import { NotFound } from './404'
+import { Home } from './home'
 
-export { SignIn, SignUp, NotFoundPage }
+export { SignIn, SignUp, NotFound, Home }

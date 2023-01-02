@@ -1,6 +1,6 @@
 import React from 'react'
 import { createBrowserRouter } from 'react-router-dom'
-import { SignIn, SignUp, NotFoundPage } from '@pages/index.js'
+import { SignIn, SignUp, NotFound, Home } from '@pages/index.js'
 
 export const router = createBrowserRouter([
 	{
@@ -12,7 +12,11 @@ export const router = createBrowserRouter([
 		element: <SignUp />
 	},
 	{
+		path: '/',
+		element: <Home />
+	},
+	{
 		path: '*',
-		element: <NotFoundPage />
+		element: <NotFound />
 	}
 ])
