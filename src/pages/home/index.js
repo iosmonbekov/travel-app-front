@@ -26,7 +26,7 @@ export const Home = () => {
 			name: 'Chunkurchak',
 			date: '12.12.2023',
 			period: '1 day', 
-			applied: 10, 
+			applied: 20, 
 			capacity: 40
 		},
 	])
