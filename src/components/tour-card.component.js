@@ -30,5 +30,5 @@ Card.propTypes = {
 	date: PropTypes.string,
 	period: PropTypes.string,
 	applied: PropTypes.number,
-	capacity: PropTypes.capacity,
+	capacity: PropTypes.number,
 }

@@ -12,7 +12,8 @@ export const SignUp = () => {
 
 	const onSubmit = async (values, { setSubmitting }) => {
 		try {
-			await http.post('auth/sign-up', values)
+			const {data} = await http.post('auth/sign-up', values)
+			localStorage.setItem('JWT_ACCESS_TOKEN', data.token)
 			setSubmitting(false)
 			navigate('/')
 		} catch (e) {
