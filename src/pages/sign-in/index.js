@@ -1,16 +1,25 @@
 import React from 'react'
 import { Field, Formik } from 'formik'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+
+import { http } from '@http'
 import { INPUT_VALIDATORS, validate } from '@utils'
 
 export const SignIn = () => {
+	const navigate = useNavigate()
 	const initialValues = { email: '', password: '' }
 
-	const onSubmit = (values, { setSubmitting }) => {
-		setTimeout(() => {
-			alert(JSON.stringify(values, null, 2))
+	const onSubmit = async (values, { setSubmitting }) => {
+		try {
+			const { data } = await http.post('auth/sign-in', values)
+			const token = data.token
+
+			localStorage.setItem('JWT_ACCESS_TOKEN', token)
 			setSubmitting(false)
-		}, 500)
+			navigate('/')
+		} catch (e) {
+			alert(e.response.data.error)
+		}
 	}
 
 	return (

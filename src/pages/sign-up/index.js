@@ -1,16 +1,23 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Field, Formik } from 'formik'
+
+
 import { INPUT_VALIDATORS, validate } from '@utils'
+import { http } from '@http'
 
 export const SignUp = () => {
+	const navigate = useNavigate()
 	const initialValues = { email: '', password: '', repeatPassword: '' }
 
-	const onSubmit = (values, { setSubmitting }) => {
-		setTimeout(() => {
-			alert(JSON.stringify(values, null, 2))
+	const onSubmit = async (values, { setSubmitting }) => {
+		try {
+			await http.post('auth/sign-up', values)
 			setSubmitting(false)
-		}, 500)
+			navigate('/')
+		} catch (e) {
+			alert(e.response.data.error)
+		}
 	}
 
 	return (
