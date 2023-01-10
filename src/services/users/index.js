@@ -2,8 +2,12 @@ import { http } from '@http'
 
 class UserService {
 	async getAllUsers() {
-		const { data } = await http.get('/users')
-		return data
+		try {
+			const { data } = await http.get('/users')
+			return data
+		} catch (e) {
+			throw Error(e.response.data.error)            
+		}
 	}
 }
 

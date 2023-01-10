@@ -9,7 +9,7 @@ import 'react-toastify/dist/ReactToastify.css'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
-	<React.StrictMode>
+	<>
 		<ToastContainer
 			position="top-right"
 			autoClose={5000}
@@ -23,5 +23,5 @@ root.render(
 			theme="light"
 		/>
 		<RouterProvider router={router} />
-	</React.StrictMode>
+	</>
 )

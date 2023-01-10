@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { NavLink, Link, useNavigate } from 'react-router-dom'
 
 export const Header = () => {
 	const navigate = useNavigate()
-	const [state, setState] = useState(window.innerWidth > 720 ? true : false)
+	const [state, setState] = useState(window.innerWidth > 992 ? true : false)
 
 	const logout = () => {
 		localStorage.clear()
@@ -24,11 +24,11 @@ export const Header = () => {
 		{
 			state && <div className="collapse navbar-collapse d-flex justify-content-between">
 				<div className="navbar-nav">
-					<Link className="nav-item nav-link active" to="/">Home</Link>
-					<Link className="nav-item nav-link" to="/my-tours">My tours</Link>
+					<NavLink className="nav-item nav-link" to="/">Home</NavLink>
+					<NavLink className="nav-item nav-link" to="/my-tours">My tours</NavLink>
 				</div>
 				<button onClick={logout} className='m-l-auto btn btn-light'>
-				Logout
+					Logout
 				</button>
 			</div>
 		}

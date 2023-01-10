@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
-// import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { Header, Card } from '@components'
 import { tourService } from '@services'
 
 export const Home = () => {
-	// const navigate = useNavigate()
+	const navigate = useNavigate()
 	const [tours, setTours] = useState([])
 
 	useEffect(() => {
@@ -15,7 +15,7 @@ export const Home = () => {
 		const tours = await tourService.getAllTours()
 		setTours(tours)
 	} 
-
+	
 	return <>
 		<Header />
 		<div className="container p-4">
@@ -24,8 +24,8 @@ export const Home = () => {
 			<div className="container mt-5 mb-3">
 				<div className="row">
 					{ 
-						tours.map(tour => <div key={tour.name} className="col-md-4">
-							<Card name={tour.name} date={tour.startDate} period={'1 day'} applied={tour.users.length} capacity={Number(tour.capacity)} />
+						tours.map(tour => <div onClick={() => navigate(`/tour/${tour.id}`)} key={tour.name} className="col-md-4">
+							<Card tour={tour} />
 						</div>)
 					}
 				</div>

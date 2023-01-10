@@ -1,6 +1,6 @@
 import React from 'react'
 import { createBrowserRouter } from 'react-router-dom'
-import { SignIn, SignUp, NotFound, Home } from '@pages/index.js'
+import { SignIn, SignUp, NotFound, Home, TourPage } from '@pages'
 
 export const router = createBrowserRouter([
 	{
@@ -14,6 +14,10 @@ export const router = createBrowserRouter([
 	{
 		path: '/',
 		element: <Home />
+	},
+	{
+		path: '/tour/:id',
+		element: <TourPage />
 	},
 	{
 		path: '*',
