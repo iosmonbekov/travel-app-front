@@ -2,37 +2,26 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import dayjs from 'dayjs'
 
+import './index.scss'
 
-export const Card = ({ tour }) => {
-	const period = dayjs(tour.endDate).diff(dayjs(tour.startDate), 'day')  
+export const Card = ({ tour, onReadMore }) => {
+	const period = dayjs(tour.endDate).diff(dayjs(tour.startDate), 'day')
 
-	return <div className="card p-3 mb-2">
-		<div className="d-flex justify-content-between">
-			<div className="d-flex flex-row align-items-center">
-				<div className="ms-2 c-details">
-					<h6 className="mb-0">{ tour.startDate }</h6> 
-					<span>{ period } days</span>
-				</div>
+	return <>
+		<div className='card-tour m-2'>
+			<img className='card-tour-img' src={tour.image} />
+			<div className="card-info">
+				<h1>{ tour.name }</h1>
+				<h3> { period } days</h3>
+				<p>Lorem Ipsum is simply dummy text from the printing and typeseting industry</p>
+				<button onClick={onReadMore} className='btn btn-light'>Read More</button>
 			</div>
 		</div>
-		<div className="mt-5">
-			<h3 className="heading">{ tour.name }</h3>
-			<div className="mt-5">
-				<div className="progress">
-					<div className="progress-bar" role="progressbar" style={{'width': `${tour.users.length * 100 / tour.capacity}%`}}></div>
-				</div>
-				<div className="mt-3"> 
-					<span className="text1">
-						{ tour.users.length } Applied 
-						<span className="text2">of { tour.capacity } capacity</span>
-					</span> 
-				</div>
-			</div>
-		</div>
-	</div>
+	</>
 }
 
 
 Card.propTypes = {
 	tour: PropTypes.object,
+	onReadMore: PropTypes.func,
 }

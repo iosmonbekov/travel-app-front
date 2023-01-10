@@ -18,15 +18,13 @@ export const Home = () => {
 	
 	return <>
 		<Header />
-		<div className="container p-4">
-			<h1>Home Page (Under Construction)</h1>
+		<div className="container">
+			<h1>Kettik Tours</h1>
 
 			<div className="container mt-5 mb-3">
-				<div className="row">
+				<div className="d-flex justify-content-center align-items-center flex-wrap">
 					{ 
-						tours.map(tour => <div onClick={() => navigate(`/tour/${tour.id}`)} key={tour.name} className="col-md-4">
-							<Card tour={tour} />
-						</div>)
+						tours.map(tour => <Card key={tour.id} tour={tour} onReadMore={() => navigate(`/tour/${tour.id}`)} />)
 					}
 				</div>
 			</div>

@@ -3,14 +3,15 @@ import { useParams } from 'react-router-dom'
 
 import { Header } from '@components'
 import { tourService } from '@services'
+import './index.scss'
 
 export const TourPage = () => {
-	// eslint-disable-next-line
-    const [tour, setTour] = useState({})
+	const [tour, setTour] = useState({})
 	const { id } = useParams()
 
 	useEffect(() => {
 		getTour(id)
+		console.log(tour)
 	}, [])
 
 	const getTour = async (id) => {
@@ -20,24 +21,27 @@ export const TourPage = () => {
 
 	return <>
 		<Header />
-		<div className="container p-4">
-			<div className="row">
-
-				<div className="col-md-6 mt-2">
-					<img className="img-fluid details-img" src={tour.image} alt="" />
+		<div className="container p-4 tour-details-page">
+        
+			<div className="card-container">
+				<div className="image-container">	
+					<img src={tour.image} />
 				</div>
-				<div className="col-md-6 mt-2">
+				<div className="text-area">
+					<div className="heading-area">
+						<h2>{ tour.name }</h2>
+						<h4>{ tour.startDate } : { tour.endDate }</h4>
+					</div>
 
-					<h3>{ tour.name }</h3>
-					<h3>${ tour.price }</h3>
-
-					<button name="add_to_cart" type="submit" className="btn btn-primary btn-lg">Register for tour</button>
-
-
-					<p className="par-title mt-4 mb-1">About this tour:</p>
-					<p className="dummy-description mb-4">
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis assumenda voluptatem tempore dolor quod. Expedita, id, minus similique dolor sed adipisci aliquam natus amet doloremque delectus cupiditate? Sint, quasi, ad necessitatibus omnis quaerat tenetur corporis porro aut, natus ex ab id vel odit veniam fugiat temporibus aperiam quia rem minima!
+					<p className="paragraph-area">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat, rerum asperiores error omnis pariatur sequi placeat quia fuga ullam. Harum obcaecati suscipit illum similique excepturi voluptates quae deserunt tempore, distinctio architecto ipsum dolor laboriosam inventore impedit nostrum totam eaque sed est? Non rem repudiandae, vitae iure suscipit pariatur, cum esse sequi cumque saepe commodi reprehenderit quaerat. Quasi ipsam repellendus similique
 					</p>
+
+					
+					<div className="price-and-buy-btn">
+						<h2 className="price">${tour.price}</h2>
+						<button className="buy-btn">Register for tour</button>
+					</div>
 				</div>
 			</div>
 		</div>
