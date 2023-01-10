@@ -1,10 +1,10 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Field, Formik } from 'formik'
-
+import { toast } from 'react-toastify'
 
 import { INPUT_VALIDATORS, validate } from '@utils'
-import { http } from '@http'
+import { authService } from '@services'
 
 export const SignUp = () => {
 	const navigate = useNavigate()
@@ -12,12 +12,11 @@ export const SignUp = () => {
 
 	const onSubmit = async (values, { setSubmitting }) => {
 		try {
-			const {data} = await http.post('auth/sign-up', values)
-			localStorage.setItem('JWT_ACCESS_TOKEN', data.token)
+			await authService.signUp(values)
 			setSubmitting(false)
 			navigate('/')
 		} catch (e) {
-			alert(e.response.data.error)
+			toast.error(e.message)
 		}
 	}
 

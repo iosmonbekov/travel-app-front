@@ -1,9 +1,7 @@
-import { Footer } from './footer.component'
-import { Header } from './header.component'
-import { Card } from './tour-card.component'
+import { Header } from './header'
+import { Card } from './tour-card'
 
 export {
-	Footer,
 	Header,
 	Card, 
 }

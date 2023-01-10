@@ -1,9 +1,11 @@
 import React from 'react'
 import { Field, Formik } from 'formik'
 import { Link, useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
-import { http } from '@http'
+import { authService } from '@services'
 import { INPUT_VALIDATORS, validate } from '@utils'
+
 
 export const SignIn = () => {
 	const navigate = useNavigate()
@@ -11,14 +13,11 @@ export const SignIn = () => {
 
 	const onSubmit = async (values, { setSubmitting }) => {
 		try {
-			const { data } = await http.post('auth/sign-in', values)
-			const token = data.token
-
-			localStorage.setItem('JWT_ACCESS_TOKEN', token)
+			await authService.signIn(values)
 			setSubmitting(false)
 			navigate('/')
-		} catch (e) {
-			alert(e.response.data.error)
+		} catch (error) {
+			toast.error(error.message)
 		}
 	}
 
