@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from 'react'
 // import { useNavigate } from 'react-router-dom'
 import { Header, Card } from '@components'
-import {  } from '@services'
-
+import { tourService } from '@services'
 
 export const Home = () => {
 	// const navigate = useNavigate()
-	const [tours] = useState([])
+	const [tours, setTours] = useState([])
 
 	useEffect(() => {
-		
+		getTours()
 	}, [])
 
+	const getTours = async () => {
+		const tours = await tourService.getAllTours()
+		setTours(tours)
+	} 
 
 	return <>
 		<Header />
@@ -22,7 +25,7 @@ export const Home = () => {
 				<div className="row">
 					{ 
 						tours.map(tour => <div key={tour.name} className="col-md-4">
-							<Card name={tour.name} date={tour.date} period={tour.period} applied={tour.applied} capacity={tour.capacity} />
+							<Card name={tour.name} date={tour.startDate} period={'1 day'} applied={tour.users.length} capacity={Number(tour.capacity)} />
 						</div>)
 					}
 				</div>
