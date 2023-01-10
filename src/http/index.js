@@ -5,12 +5,24 @@ const http = axios.create({
 })
 
 
-http.interceptors.request.use(function (config) {
+http.interceptors.request.use((request) => {
 	const token = localStorage.getItem('JWT_ACCESS_TOKEN')
-	config.headers.authorization = token
+	request.headers.authorization = token
+	return request
+}, (error) => {
+	return Promise.reject(error)
+})
 
-	return config
-}, function (error) {
+http.interceptors.response.use((response) => {
+	return response
+}, (error) => {
+	switch (error.response.status) {
+	case 403:
+		location.href = location.origin + '/sign-in'
+		break
+	default:
+		break
+	}
 	return Promise.reject(error)
 })
 

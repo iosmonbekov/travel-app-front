@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+// import { useNavigate } from 'react-router-dom'
 import { Header, Card } from '@components'
 
 import { http } from '@http'
 
 export const Home = () => {
-	const navigate = useNavigate()
+	// const navigate = useNavigate()
 	const [users, setUsers] = useState([])
 	const [tours] = useState([
 		{
@@ -40,7 +40,7 @@ export const Home = () => {
 			const { data } = await http.get('/users')
 			setUsers(data)
 		} catch (error) {
-			if (error.response.status === 403) navigate('/sign-in')
+			// if (error.response.status === 403) navigate('/sign-in')
 		}
 	}
 
