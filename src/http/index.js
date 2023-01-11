@@ -1,7 +1,8 @@
 import axios from 'axios'
 
 const http = axios.create({
-	baseURL: 'https://kettik-kg-server.herokuapp.com/',
+	// baseURL: 'https://kettik-kg-server.herokuapp.com/',
+	baseURL: 'http://localhost:8080/'
 })
 
 

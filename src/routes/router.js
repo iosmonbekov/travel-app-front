@@ -1,6 +1,13 @@
 import React from 'react'
 import { createBrowserRouter } from 'react-router-dom'
-import { SignIn, SignUp, NotFound, Home, TourPage } from '@pages'
+import { 
+	SignIn, 
+	SignUp, 
+	NotFound, 
+	Home, 
+	TourPage, 
+	MyTours,
+} from '@pages'
 
 export const router = createBrowserRouter([
 	{
@@ -18,6 +25,10 @@ export const router = createBrowserRouter([
 	{
 		path: '/tour/:id',
 		element: <TourPage />
+	},
+	{
+		path: '/my-tours',
+		element: <MyTours />
 	},
 	{
 		path: '*',

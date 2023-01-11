@@ -8,7 +8,7 @@ export const Card = ({ tour, onReadMore }) => {
 	const period = dayjs(tour.endDate).diff(dayjs(tour.startDate), 'day')
 
 	return <>
-		<div className='card-tour m-2'>
+		<div className='card-tour m-2 loading'>
 			<img className='card-tour-img' src={tour.image} />
 			<div className="card-info">
 				<h1>{ tour.name }</h1>

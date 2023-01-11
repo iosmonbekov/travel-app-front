@@ -5,3 +5,16 @@ body,
 #root {
     height: 100%;
 }
+
+// Loading 
+.loading {
+    border-radius: 15px;
+    background-size: 200% 100% !important;
+    background: linear-gradient(90deg, #ddd 0px, #fff 50px, #ddd 100px);
+    animation: load 1s linear infinite;
+}
+
+@keyframes load {
+    0% { background-position-x: -100px; }
+    100% { background-position-x: -100%; }
+}
