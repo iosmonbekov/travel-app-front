@@ -1,25 +1,26 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Header, Card } from '@components'
-import { tourService } from '@services'
+import { Header, Card } from '../../components'
+import { tourService } from '../../services'
+import { Tour } from '../../types/models'
 
-export const Home = () => {
+export const MyTours = () => {
 	const navigate = useNavigate()
-	const [tours, setTours] = useState([])
+	const [tours, setTours] = useState<Tour[]>([])
 
 	useEffect(() => {
 		getTours()
 	}, [])
 
 	const getTours = async () => {
-		const tours = await tourService.getAllTours()
+		const tours = await tourService.getMyTours()
 		setTours(tours)
 	} 
 	
 	return <>
 		<Header />
 		<div className="container">
-			<h1 className='mt-3 ml-3'>Available Tours</h1>
+			<h1 className='mt-3 ml-3'>My Tours</h1>
 
 			<div className="container mt-5 mb-3">
 				<div className="d-flex justify-content-center align-items-center flex-wrap">

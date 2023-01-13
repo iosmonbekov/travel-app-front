@@ -1,23 +1,24 @@
-import { http } from '@http'
+import { http } from '../../http'
+import { AuthForm } from '../../types/forms'
 
 class AuthService {
-	async signIn(user) {
+	async signIn(form: AuthForm) {
 		try {
-			const { data } = await http.post('auth/sign-in', user)
+			const { data } = await http.post('auth/sign-in', form)
 			const token = data.token
 
 			localStorage.setItem('JWT_ACCESS_TOKEN', token)
 			return
-		} catch (e) {
+		} catch (e: any) {
 			throw Error(e.response.data.error)
 		}
 	}
 
-	async signUp(user) {
+	async signUp(form: AuthForm) {
 		try {
-			const { data } = await http.post('auth/sign-up', user)
+			const { data } = await http.post('auth/sign-up', form)
 			localStorage.setItem('JWT_ACCESS_TOKEN', data.token)
-		} catch (e) {
+		} catch (e: any) {
 			throw Error(e.response.data.error)
 		}
         

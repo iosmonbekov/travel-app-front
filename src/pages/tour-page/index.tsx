@@ -2,29 +2,30 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
-import { Header } from '@components'
-import { tourService } from '@services'
+import { Header } from '../../components'
+import { tourService } from '../../services'
+import { Tour } from '../../types/models'
 import './index.scss'
 
 export const TourPage = () => {
-	const [tour, setTour] = useState({})
+	const [tour, setTour] = useState<Tour>({} as Tour)
 	const { id } = useParams()
 
 	useEffect(() => {
-		getTour(id)
+		getTour(Number(id))
 		console.log(tour)
 	}, [])
 
-	const getTour = async (id) => {
+	const getTour = async (id: number) => {
 		const tour = await tourService.getTourById(id)
 		setTour(tour)
 	}
 
-	const register = async (id) => {
+	const register = async (id: number) => {
 		try {
 			await tourService.registerForTour(id)
-			await getTour()
-		} catch (e) {
+			await getTour(id)
+		} catch (e: any) {
 			toast.error(e.message)
 		}
 	}

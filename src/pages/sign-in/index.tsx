@@ -1,22 +1,24 @@
 import React from 'react'
-import { Link, useNavigate } from 'react-router-dom'
 import { Field, Formik } from 'formik'
+import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
-import { INPUT_VALIDATORS, validate } from '@utils'
-import { authService } from '@services'
+import { authService } from '../../services'
+import { INPUT_VALIDATORS, validate } from '../../utils'
+import { AuthForm } from '../../types/forms'
 
-export const SignUp = () => {
+
+export const SignIn = () => {
 	const navigate = useNavigate()
-	const initialValues = { email: '', password: '', repeatPassword: '' }
+	const initialValues: AuthForm = { email: '', password: '' }
 
-	const onSubmit = async (values, { setSubmitting }) => {
+	const onSubmit = async (values: AuthForm, { setSubmitting }: { setSubmitting: (flag: boolean) => void }) => {
 		try {
-			await authService.signUp(values)
+			await authService.signIn(values)
 			setSubmitting(false)
 			navigate('/')
-		} catch (e) {
-			toast.error(e.message)
+		} catch (error: any) {
+			toast.error(error.message)
 		}
 	}
 
@@ -40,7 +42,7 @@ export const SignUp = () => {
 								isSubmitting,
 							}) => (
 								<form onSubmit={handleSubmit}>
-									<div className="form-outline mb-3">
+									<div className="form-outline mb-4">
 										<label className="form-label">Email address</label>
 										<Field 
 											type="email" 
@@ -70,33 +72,13 @@ export const SignUp = () => {
 										</div>
 									</div>
 
-									<div className="form-outline mb-4">
-										<label className="form-label">Repeat password</label>
-										<Field 
-											type="password" 
-											name='repeatPassword' 
-											className={`form-control form-control-lg ${touched.repeatPassword && errors.repeatPassword ? 'is-invalid' : touched.repeatPassword && 'is-valid'}`} 
-											placeholder="Enter a valid email address"
-											validate={
-												validate([
-													INPUT_VALIDATORS.required(), 
-													INPUT_VALIDATORS.min(6),
-													INPUT_VALIDATORS.same(values.password, 'Passwords not same')
-												])}
-											value={values.repeatPassword} 
-										/>
-										<div className="invalid-feedback">
-											{touched.repeatPassword && errors.repeatPassword}
-										</div>
-									</div>
-
 									<div className="text-center text-lg-start mt-4 pt-2">
 										<button disabled={isSubmitting} type="submit" className="btn btn-primary btn-lg px-5">
-                                            Sign up
+											Sign in
 										</button>
 										<p className="small fw-bold mt-2 pt-1 mb-0">
-											Already have account?
-											<Link to="/sign-in" className="link-danger mx-2">Sign in</Link>
+											Don&apos;t have an account?
+											<Link to="/sign-up" className="link-danger mx-2">Sign up</Link>
 										</p>
 									</div>
 								</form>

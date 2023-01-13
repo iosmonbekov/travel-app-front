@@ -1,4 +1,3 @@
-import React from 'react'
 import { createBrowserRouter } from 'react-router-dom'
 import { 
 	SignIn, 
@@ -7,7 +6,7 @@ import {
 	Home, 
 	TourPage, 
 	MyTours,
-} from '@pages'
+} from '../pages'
 
 export const router = createBrowserRouter([
 	{

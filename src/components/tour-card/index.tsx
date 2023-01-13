@@ -1,10 +1,10 @@
-import React from 'react'
-import PropTypes from 'prop-types'
 import dayjs from 'dayjs'
+import { Tour } from '../../types/models'
+import { Caller } from '../../types/support'
 
 import './index.scss'
 
-export const Card = ({ tour, onReadMore }) => {
+export const Card = ({ tour, onReadMore }: { tour: Tour, onReadMore: Caller}) => {
 	const period = dayjs(tour.endDate).diff(dayjs(tour.startDate), 'day')
 
 	return <>
@@ -20,8 +20,3 @@ export const Card = ({ tour, onReadMore }) => {
 	</>
 }
 
-
-Card.propTypes = {
-	tour: PropTypes.object,
-	onReadMore: PropTypes.func,
-}

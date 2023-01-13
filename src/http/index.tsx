@@ -8,6 +8,7 @@ const http = axios.create({
 
 http.interceptors.request.use((request) => {
 	const token = localStorage.getItem('JWT_ACCESS_TOKEN')
+	// @ts-ignore-next-line
 	request.headers.authorization = token
 	return request
 }, (error) => {

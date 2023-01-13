@@ -1,11 +1,11 @@
-import { http } from '@http'
+import { http } from '../../http'
 
 class UserService {
 	async getAllUsers() {
 		try {
 			const { data } = await http.get('/users')
 			return data
-		} catch (e) {
+		} catch (e: any) {
 			throw Error(e.response.data.error)            
 		}
 	}

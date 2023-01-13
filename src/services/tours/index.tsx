@@ -1,20 +1,20 @@
-import { http } from '@http'
+import { http } from '../../http'
 
 class TourService {
 	async getAllTours() {
 		try {
 			const { data } = await http.get('/tours')
 			return data
-		} catch (e) {
+		} catch (e: any) {
 			throw Error(e.response.data.error)            
 		}
 	}
 
-	async getTourById(id) {
+	async getTourById(id: number) {
 		try {
 			const { data } = await http.get(`/tours/${id}`)
 			return data
-		} catch (e) {
+		} catch (e: any) {
 			throw Error(e.response.data.error)            
 		}
 	}
@@ -23,15 +23,15 @@ class TourService {
 		try {
 			const { data } = await http.get('/tours/my-tours')
 			return data
-		} catch (e) {
+		} catch (e: any) {
 			throw Error(e.response.data.error)            
 		}
 	}
 
-	async registerForTour(id) {
+	async registerForTour(id: number) {
 		try {
 			return await http.post(`/tours/${id}`) 
-		} catch (e) {
+		} catch (e: any) {
 			throw Error(e.response.data.error)            
 		}
 	}
